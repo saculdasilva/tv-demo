@@ -23,7 +23,7 @@ export default defineConfig({
 		collections: [
 			{
 				name: 'post',
-				label: 'Blog Post',
+				label: 'Artigos',
 				path: 'src/content/blog',
 				format: 'mdx',
 				fields: [
