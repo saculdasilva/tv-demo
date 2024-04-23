@@ -11,7 +11,7 @@ const {
 } = Astro.props
 ---
 
-<article class='grid grid-rows-[150px_auto] md:grid-rows-[300px_220px] min-h-full group'>
+<article class='grid grid-rows-[180px_auto] md:grid-rows-[180px_130px] min-h-full group'>
 	<a class='relative overflow-hidden' href={`/post/${slug}/`}>
 		<Image
 			src={heroImage}
@@ -35,25 +35,14 @@ const {
 		</div>
 	</a>
 
-	<div class='flex justify-between flex-col gap-4 md:gap-0 py-6 pl-1'>
-		<div class='flex flex-col gap-3'>
-			<div class='flex flex-col gap-2'>
-				<a class='text-2xl font-semibold -tracking-wider' href={`/post/${slug}/`}>
-					{title}
-				</a>
-			</div>
-
-			<p
-				class='overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-[400] md:pr-[15%]'
-			>
-				{description}
-			</p>
-		</div>
-
-		<footer class='flex justify-between items-center'>
+	<div class='flex justify-between flex-col py-6 pl-1'>
+		<div class='flex flex-col'>
+			<a class='text-2xl font-semibold -tracking-wider' href={`/post/${slug}/`}>
+				{title}
+			</a>
 			<a
 				href={`/post/${slug}/`}
-				class='flex justify-center items-center dark:text-white rounded-full hover:translate-x-1 transition-transform duration-150 ease-in-out font-semibold gap-1 group'
+				class='flex justify-start items-center dark:text-white rounded-full hover:translate-x-1 transition-transform duration-150 ease-in-out font-semibold gap-1 group'
 				aria-label={`go to ${title}`}
 			>
 				Ver mais <span
@@ -61,7 +50,7 @@ const {
 					><ArrowUp width='18' height='18' /></span
 				>
 			</a>
-		</footer>
+		</div>
 	</div>
 </article>
 

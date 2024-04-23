@@ -1,7 +1,6 @@
 ---
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 
@@ -13,7 +12,7 @@ const posts = await getPosts(MAX_POSTS)
 	<ListCategories />
 
 	<div>
-		<h2 class='text-lg font-medium tracking-wide text-end'>Em direto</h2>
+		<h2 class='text-lg font-medium tracking-wide text-start mb-6'>Em direto</h2>
 		<ListPosts posts={posts} />
 	</div>
 </BaseLayout>

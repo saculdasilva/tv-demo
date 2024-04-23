@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import PostCard from '@/components/PostCard'
 import { cn } from '@/utils'
+import SmallPostCard from './SmallPostCard.astro'
 const { pathname } = Astro.url
 
 type Props = {
@@ -11,27 +12,43 @@ type Props = {
 const { posts } = Astro.props
 ---
 
-<section class={cn(`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8 mt-3`)}>
-	{
-		pathname === '/' && (
-			<div class='col-span-4'>
+{
+	pathname === '/' ? (
+		<section class={cn(`flex flex-wrap`)}>
+			<div class='w-9/12'>
 				<iframe width='100%' height='600px' src='https://www.youtube.com/embed/gN0PZCe-kwQ' />
 			</div>
-		)
-	}
+			<div class={cn(`flex flex-col w-3/12 pl-12`)}>
+				{posts.slice(0, 2).map(async (post) => {
+					const { remarkPluginFrontmatter } = await post.render()
 
-	{
-		posts.slice(0, 4).map(async (post) => {
-			const { remarkPluginFrontmatter } = await post.render()
+					return (
+						<div>
+							<SmallPostCard
+								id={post.id}
+								data={post.data}
+								slug={post.slug}
+								readTime={remarkPluginFrontmatter.minutesRead}
+							/>
+						</div>
+					)
+				})}
+			</div>
+		</section>
+	) : (
+		<section class={cn(`grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8 mt-3`)}>
+			{posts.slice(0, 4).map(async (post) => {
+				const { remarkPluginFrontmatter } = await post.render()
 
-			return (
-				<PostCard
-					id={post.id}
-					data={post.data}
-					slug={post.slug}
-					readTime={remarkPluginFrontmatter.minutesRead}
-				/>
-			)
-		})
-	}
-</section>
+				return (
+					<PostCard
+						id={post.id}
+						data={post.data}
+						slug={post.slug}
+						readTime={remarkPluginFrontmatter.minutesRead}
+					/>
+				)
+			})}
+		</section>
+	)
+}
